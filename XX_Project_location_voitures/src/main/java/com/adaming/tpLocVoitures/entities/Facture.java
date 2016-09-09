@@ -1,0 +1,94 @@
+package com.adaming.tpLocVoitures.entities;
+
+import java.util.Calendar;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+/**
+ * @author inti0314
+ *
+ */
+@Entity
+public class Facture {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idFacture;
+	private Calendar date;
+	
+	@OneToOne
+	@JoinColumn(name = "idReservation")
+	private Reservation reservation;
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * 
+	 */
+	public Facture() {
+		super();
+	}
+
+	/**
+	 * @param date
+	 */
+	public Facture(Calendar date) {
+		super();
+		this.date = date;
+	}
+
+	/**
+	 * @param idFacture
+	 * @param date
+	 */
+	public Facture(Long idFacture, Calendar date) {
+		super();
+		this.idFacture = idFacture;
+		this.date = date;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+	/**
+	 * @return the idFacture
+	 */
+	public Long getIdFacture() {
+		return idFacture;
+	}
+
+	/**
+	 * @param idFacture the idFacture to set
+	 */
+	public void setIdFacture(Long idFacture) {
+		this.idFacture = idFacture;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Calendar getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
+}

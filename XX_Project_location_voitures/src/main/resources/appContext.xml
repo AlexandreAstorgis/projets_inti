@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<!-- Datasource -->
+	<bean id="datasourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/db_projet_loc_voitures"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+	
+	<!-- Persistence Unit Manager -->
+	<bean id="puManagerBean" class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+		<property name="defaultDataSource" ref="datasourceBean"/>
+		<property name="persistenceXmlLocations">
+			<list>
+				<value>classpath*:META-INF/persistence.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- Entity Manager Factory -->
+	<bean id="emFactoryBean" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitManager" ref="puManagerBean"/>
+		<property name="persistenceUnitName" value="PU_projet_loc_voitures"/>
+	</bean>
+	
+	
+	<!-- Transaction Manager -->
+	<bean id="txManagerBean" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="emFactoryBean"/>
+	</bean>
+	
+	<!-- Annotations JPA et Transactionnal -->
+	<context:annotation-config/>
+	<tx:annotation-driven transaction-manager="txManagerBean"/>
+
+</beans>
