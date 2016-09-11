@@ -3,6 +3,7 @@ package com.adaming.tpLocVoitures.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,18 +27,18 @@ public class Agence {
 	private String mail;
 	
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "clients_par_agence")
 	private List<Client> listeClients;
 	
-	@OneToMany(mappedBy = "agence")
+	@OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
 	private List<Reservation> listeReservations;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "factures_par_agence")
 	private List<Facture> listeFactures;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "voitures_par_agence")
 	private List<Voiture> listeVoitures;
 	
@@ -165,5 +166,61 @@ public class Agence {
 	 */
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+	/**
+	 * @return the listeClients
+	 */
+	public List<Client> getListeClients() {
+		return listeClients;
+	}
+
+	/**
+	 * @param listeClients the listeClients to set
+	 */
+	public void setListeClients(List<Client> listeClients) {
+		this.listeClients = listeClients;
+	}
+
+	/**
+	 * @return the listeReservations
+	 */
+	public List<Reservation> getListeReservations() {
+		return listeReservations;
+	}
+
+	/**
+	 * @param listeReservations the listeReservations to set
+	 */
+	public void setListeReservations(List<Reservation> listeReservations) {
+		this.listeReservations = listeReservations;
+	}
+
+	/**
+	 * @return the listeFactures
+	 */
+	public List<Facture> getListeFactures() {
+		return listeFactures;
+	}
+
+	/**
+	 * @param listeFactures the listeFactures to set
+	 */
+	public void setListeFactures(List<Facture> listeFactures) {
+		this.listeFactures = listeFactures;
+	}
+
+	/**
+	 * @return the listeVoitures
+	 */
+	public List<Voiture> getListeVoitures() {
+		return listeVoitures;
+	}
+
+	/**
+	 * @param listeVoitures the listeVoitures to set
+	 */
+	public void setListeVoitures(List<Voiture> listeVoitures) {
+		this.listeVoitures = listeVoitures;
 	}
 }

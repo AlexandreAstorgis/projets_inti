@@ -91,4 +91,18 @@ public class Facture {
 	public void setDate(Calendar date) {
 		this.date = date;
 	}
+
+	/**
+	 * @return the reservation
+	 */
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	/**
+	 * @param reservation the reservation to set
+	 */
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
 }

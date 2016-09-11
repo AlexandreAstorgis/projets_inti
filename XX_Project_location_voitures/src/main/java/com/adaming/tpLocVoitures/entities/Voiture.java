@@ -3,6 +3,7 @@ package com.adaming.tpLocVoitures.entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class Voiture {
 	private Double prix;
 	
 	
-	@OneToMany(mappedBy = "voiture")
+	@OneToMany(mappedBy = "voiture", fetch = FetchType.LAZY)
 	private List<Reservation> reservation;
 	
 	
@@ -189,5 +190,19 @@ public class Voiture {
 	 */
 	public void setPrix(Double prix) {
 		this.prix = prix;
+	}
+
+	/**
+	 * @return the reservation
+	 */
+	public List<Reservation> getReservation() {
+		return reservation;
+	}
+
+	/**
+	 * @param reservation the reservation to set
+	 */
+	public void setReservation(List<Reservation> reservation) {
+		this.reservation = reservation;
 	}
 }

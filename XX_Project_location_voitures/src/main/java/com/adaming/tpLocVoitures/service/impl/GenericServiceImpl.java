@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.adaming.tpLocVoitures.dao.IGenericDAO;
@@ -14,6 +15,7 @@ import com.adaming.tpLocVoitures.service.IGenericService;
  * @author inti0314
  *
  */
+@Service
 @Transactional
 public class GenericServiceImpl<T> implements IGenericService<T> {
 	

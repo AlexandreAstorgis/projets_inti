@@ -149,4 +149,60 @@ public class Reservation {
 	public void setPrixTotal(Double prixTotal) {
 		this.prixTotal = prixTotal;
 	}
+
+	/**
+	 * @return the client
+	 */
+	public Client getClient() {
+		return client;
+	}
+
+	/**
+	 * @param client the client to set
+	 */
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	/**
+	 * @return the voiture
+	 */
+	public Voiture getVoiture() {
+		return voiture;
+	}
+
+	/**
+	 * @param voiture the voiture to set
+	 */
+	public void setVoiture(Voiture voiture) {
+		this.voiture = voiture;
+	}
+
+	/**
+	 * @return the facture
+	 */
+	public Facture getFacture() {
+		return facture;
+	}
+
+	/**
+	 * @param facture the facture to set
+	 */
+	public void setFacture(Facture facture) {
+		this.facture = facture;
+	}
+
+	/**
+	 * @return the agence
+	 */
+	public Agence getAgence() {
+		return agence;
+	}
+
+	/**
+	 * @param agence the agence to set
+	 */
+	public void setAgence(Agence agence) {
+		this.agence = agence;
+	}
 }

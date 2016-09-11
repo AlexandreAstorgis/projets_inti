@@ -1,5 +1,8 @@
 package com.adaming.tpLocVoitures.service;
 
+import java.util.List;
+
+import com.adaming.tpLocVoitures.entities.Reservation;
 import com.adaming.tpLocVoitures.entities.Voiture;
 
 /**
@@ -8,4 +11,5 @@ import com.adaming.tpLocVoitures.entities.Voiture;
  */
 public interface IVoitureService extends IGenericService<Voiture> {
 
+	List<Reservation> getAllReservations(Integer idVoiture);
 }

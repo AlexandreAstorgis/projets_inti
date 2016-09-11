@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Client {
 	private Calendar dateDeNaissance;
 	private Calendar dateDePermis;
 	
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
 	private List<Reservation> listeReservations;
 	
 	
@@ -211,5 +212,19 @@ public class Client {
 	 */
 	public void setDateDePermis(Calendar dateDePermis) {
 		this.dateDePermis = dateDePermis;
+	}
+
+	/**
+	 * @return the listeReservations
+	 */
+	public List<Reservation> getListeReservations() {
+		return listeReservations;
+	}
+
+	/**
+	 * @param listeReservations the listeReservations to set
+	 */
+	public void setListeReservations(List<Reservation> listeReservations) {
+		this.listeReservations = listeReservations;
 	}
 }
