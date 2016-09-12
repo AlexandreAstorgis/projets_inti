@@ -77,4 +77,22 @@ public class UtilitaireDate {
 		
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @param dateA
+	 * @param dateB
+	 * @return
+	 */
+	public static boolean equals(Calendar dateA, Calendar dateB) {
+		
+		if (dateA.get(Calendar.YEAR) != dateB.get(Calendar.YEAR))
+			return false;
+		if (dateA.get(Calendar.MONTH) != dateB.get(Calendar.MONTH))
+			return false;
+		if (dateA.get(Calendar.DATE) != dateB.get(Calendar.DATE))
+			return false;
+		
+		return true;
+	}
 }

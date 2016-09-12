@@ -19,8 +19,7 @@ import com.adaming.tpLocVoitures.service.IClientService;
  */
 @Service
 @Transactional
-public class ClientServiceImpl extends GenericServiceImpl<Client> implements
-		IClientService {
+public class ClientServiceImpl implements IClientService {
 	
 	@Inject
 	private IClientDAO dao;
@@ -45,5 +44,37 @@ public class ClientServiceImpl extends GenericServiceImpl<Client> implements
 	@Override
 	public List<Reservation> getAllReservations(Integer idClient) {
 		return dao.getAllReservations(idClient);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#add(java.lang.Object)
+	 */
+	@Override
+	public Client add(Client client) {
+		return dao.add(client);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#update(java.lang.Object)
+	 */
+	@Override
+	public Client update(Client client) {
+		return dao.update(client);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#find(java.lang.Long)
+	 */
+	@Override
+	public Client find(Long id) {
+		return dao.find(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#getAll()
+	 */
+	@Override
+	public List<Client> getAll() {
+		return dao.getAll();
 	}
 }

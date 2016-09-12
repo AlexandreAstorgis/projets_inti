@@ -19,8 +19,7 @@ import com.adaming.tpLocVoitures.service.IVoitureService;
  */
 @Service
 @Transactional
-public class VoitureServiceImpl extends GenericServiceImpl<Voiture> implements
-		IVoitureService {
+public class VoitureServiceImpl implements IVoitureService {
 	
 	@Inject
 	private IVoitureDAO dao;
@@ -47,5 +46,37 @@ public class VoitureServiceImpl extends GenericServiceImpl<Voiture> implements
 	@Override
 	public List<Reservation> getAllReservations(Integer idVoiture) {
 		return dao.getAllReservations(idVoiture);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#add(java.lang.Object)
+	 */
+	@Override
+	public Voiture add(Voiture voiture) {
+		return dao.add(voiture);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#update(java.lang.Object)
+	 */
+	@Override
+	public Voiture update(Voiture voiture) {
+		return dao.update(voiture);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#find(java.lang.Long)
+	 */
+	@Override
+	public Voiture find(Long id) {
+		return dao.find(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#getAll()
+	 */
+	@Override
+	public List<Voiture> getAll() {
+		return dao.getAll();
 	}
 }

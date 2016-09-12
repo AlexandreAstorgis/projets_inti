@@ -15,5 +15,4 @@ public interface IGenericService<T> {
 	T update(T t);
 	T find(Long id);
 	List<T> getAll();
-	T delete(T t);
 }

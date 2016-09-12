@@ -75,15 +75,4 @@ public abstract class GenericDAOImpl<T> implements IGenericDAO<T> {
 		log.info("------     RECHERCHE DE TOUS LES ELEMENTS DE TYPE : " + classe.getSimpleName() + "   -------");
 		return resultList;
 	}
-
-	/* (non-Javadoc)
-	 * @see com.adaming.tpLocVoitures.dao.IGenericDAO#delete(java.lang.Object)
-	 */
-	@Override
-	public T delete(T t) {
-		em.remove(t);
-		log.info("------     SUPPRESSION D'UN ELEMENT DE TYPE : " + classe.getSimpleName() + "   -------");
-		return t;
-	}
-
 }

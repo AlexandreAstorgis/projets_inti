@@ -22,8 +22,7 @@ import com.adaming.tpLocVoitures.service.IAgenceService;
  */
 @Service
 @Transactional
-public class AgenceServiceImpl extends GenericServiceImpl<Agence> implements
-		IAgenceService {
+public class AgenceServiceImpl implements IAgenceService {
 	
 	@Inject
 	private IAgenceDAO dao;
@@ -71,5 +70,37 @@ public class AgenceServiceImpl extends GenericServiceImpl<Agence> implements
 	@Override
 	public List<Client> getAllClients(Integer idAgence) {
 		return dao.getAllClients(idAgence);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#add(java.lang.Object)
+	 */
+	@Override
+	public Agence add(Agence agence) {
+		return dao.add(agence);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#update(java.lang.Object)
+	 */
+	@Override
+	public Agence update(Agence agence) {
+		return dao.update(agence);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#find(java.lang.Long)
+	 */
+	@Override
+	public Agence find(Long id) {
+		return dao.find(id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IGenericService#getAll()
+	 */
+	@Override
+	public List<Agence> getAll() {
+		return dao.getAll();
 	}
 }

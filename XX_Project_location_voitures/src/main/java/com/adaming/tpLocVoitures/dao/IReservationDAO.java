@@ -6,6 +6,6 @@ import com.adaming.tpLocVoitures.entities.Reservation;
  * @author inti0314
  *
  */
-public interface IResevationDAO extends IGenericDAO<Reservation> {
+public interface IReservationDAO extends IGenericDAO<Reservation> {
 
 }
