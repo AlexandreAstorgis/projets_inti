@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -24,6 +26,10 @@ public class Facture {
 	@OneToOne
 	@JoinColumn(name = "idReservation")
 	private Reservation reservation;
+	
+	@ManyToOne
+	@JoinTable(name = "factures_par_agence")
+	private Agence agence;
 	
 	
 	
@@ -104,5 +110,19 @@ public class Facture {
 	 */
 	public void setReservation(Reservation reservation) {
 		this.reservation = reservation;
+	}
+
+	/**
+	 * @return the agence
+	 */
+	public Agence getAgence() {
+		return agence;
+	}
+
+	/**
+	 * @param agence the agence to set
+	 */
+	public void setAgence(Agence agence) {
+		this.agence = agence;
 	}
 }

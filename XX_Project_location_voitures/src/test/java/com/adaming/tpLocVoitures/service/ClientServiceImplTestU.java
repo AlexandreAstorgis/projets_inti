@@ -6,11 +6,11 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.adaming.tpLocVoitures.entities.Client;
+import com.adaming.tpLocVoitures.entities.Reservation;
 import com.adaming.tpLocVoitures.tools.UtilitaireDate;
 
 public class ClientServiceImplTestU {
@@ -30,9 +30,13 @@ public class ClientServiceImplTestU {
 	}
 
 	@Test
-	@Ignore
 	public void testGetAllReservations() {
-		fail("Not yet implemented");
+		Long idClient1 = 1L;
+		Long idClient2 = 2L;
+		List<Reservation> liste1 = service.getAllReservations(idClient1);
+		List<Reservation> liste2 = service.getAllReservations(idClient2);
+		
+		assertTrue(liste1.size() > 0 && liste2.size() < 5);
 	}
 
 	@Test

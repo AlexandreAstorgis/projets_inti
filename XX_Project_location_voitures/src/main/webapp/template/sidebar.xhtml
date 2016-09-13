@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+	<h:head>
+		<title>Sidebar Page</title>
+	</h:head> 
+	<body> 
+		<ui:composition>
+			<p:megaMenu orientation="vertical">
+			    <p:menuitem value="Page d'Accueil" url="index.xhtml" icon="fa fa-home" />
+			    
+			    <p:submenu label="Connexion" icon="fa fa-user">
+			        <p:column>
+			            <p:submenu>
+			                <p:menuitem value="Nouvel Utilisateur" url="#" icon="fa fa-user-plus" />
+			                <p:menuitem value="Client" url="#" icon="fa fa-user" />
+			                <p:menuitem value="Admin" url="#" icon="fa fa-lock" />
+			            </p:submenu>
+			        </p:column>
+			    </p:submenu>
+			 
+			    <p:submenu label="Utilisateur" icon="fa fa-user" styleClass="menu">
+			        <p:column>
+			            <p:submenu label="Compte" icon="fa fa-user" >
+			                <p:menuitem value="Consulter le profil" url="#" />
+			                <p:menuitem value="Modifier le profil" url="#" />
+			                <p:menuitem value="Se Connecter" url="#" />
+			            </p:submenu>
+			        </p:column>
+			        <p:column>
+			            <p:submenu label="Réservations" icon="fa fa-car" >
+			                <p:menuitem value="Faire une réservation" url="index.xhtml" />
+			                <p:menuitem value="Historique des réservations" url="#" />
+			                <p:menuitem value="Obtenir une facture" url="#" />
+			            </p:submenu>
+			        </p:column>
+			    </p:submenu>
+			 
+			    <p:submenu label="Admin" icon="fa fa-lock" styleClass="menu">
+			        <p:column>
+			            <p:submenu label="Agence" icon="fa fa-home" >
+			                <p:menuitem value="Se Connecter" url="#" />
+			                <p:menuitem value="Consulter les retours" url="#" />
+			                <p:menuitem value="Chiffres d'Affaires" url="#" />
+			                <p:menuitem value="Ajouter une agence" url="#" />
+			                <p:menuitem value="Ajouter un admin" url="#" />
+			            </p:submenu>
+			        </p:column>
+			        <p:column>
+			            <p:submenu label="Clients" icon="fa fa-car" >
+			                <p:menuitem value="Afficher la liste des clients" url="#" />
+			                <p:menuitem value="Ajouter un client" url="#" />
+			                <p:menuitem value="Trouver un client" url="#" />
+			                <p:menuitem value="Modifier un client" url="#" />
+			                <p:menuitem value="Obtenir une facture" url="#" />
+			            </p:submenu>
+			        </p:column>
+			    </p:submenu>
+			</p:megaMenu>
+		</ui:composition>
+	</body> 
+</html>

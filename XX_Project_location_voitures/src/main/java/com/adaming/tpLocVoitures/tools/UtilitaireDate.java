@@ -57,6 +57,16 @@ public class UtilitaireDate {
 	
 	
 	/**
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public static Integer getNombreJours(Calendar date) {
+		return date.get(Calendar.DATE);
+	}
+	
+	
+	/**
 	 * Methode qui permet de créer une instance de l'objet Calendar
 	 * representant une date donnee en parametre
 	 * 

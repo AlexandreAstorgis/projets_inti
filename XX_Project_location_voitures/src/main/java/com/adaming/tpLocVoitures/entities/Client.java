@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -30,6 +31,9 @@ public class Client {
 	
 	@OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
 	private List<Reservation> listeReservations;
+	
+	@ManyToMany(mappedBy = "listeClients", fetch = FetchType.LAZY)
+	private List<Agence> agences;
 	
 	
 	
@@ -226,5 +230,19 @@ public class Client {
 	 */
 	public void setListeReservations(List<Reservation> listeReservations) {
 		this.listeReservations = listeReservations;
+	}
+
+	/**
+	 * @return the agences
+	 */
+	public List<Agence> getAgences() {
+		return agences;
+	}
+
+	/**
+	 * @param agences the agences to set
+	 */
+	public void setAgences(List<Agence> agences) {
+		this.agences = agences;
 	}
 }

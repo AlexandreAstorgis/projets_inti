@@ -11,5 +11,5 @@ import com.adaming.tpLocVoitures.entities.Reservation;
  */
 public interface IClientDAO extends IGenericDAO<Client> {
 
-	List<Reservation> getAllReservations(Integer idClient);
+	List<Reservation> getAllReservations(Long idClient);
 }

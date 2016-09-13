@@ -6,10 +6,10 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.adaming.tpLocVoitures.entities.Reservation;
 import com.adaming.tpLocVoitures.entities.Voiture;
 
 /**
@@ -42,9 +42,11 @@ public class VoitureServiceImplTestU {
 	 * Test method for {@link com.adaming.tpLocVoitures.service.impl.VoitureServiceImpl#getAllReservations(java.lang.Integer)}.
 	 */
 	@Test
-	@Ignore
 	public void testGetAllReservations() {
-		fail("Not yet implemented");
+		Long idVoiture = 8L;
+		List<Reservation> liste = service.getAllReservations(idVoiture);
+
+		assertTrue(liste.size() > 0);
 	}
 
 	/**

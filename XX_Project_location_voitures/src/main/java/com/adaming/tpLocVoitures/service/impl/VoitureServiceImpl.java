@@ -44,7 +44,7 @@ public class VoitureServiceImpl implements IVoitureService {
 	 * @see com.adaming.tpLocVoitures.service.IVoitureService#getAllReservations(java.lang.Integer)
 	 */
 	@Override
-	public List<Reservation> getAllReservations(Integer idVoiture) {
+	public List<Reservation> getAllReservations(Long idVoiture) {
 		return dao.getAllReservations(idVoiture);
 	}
 

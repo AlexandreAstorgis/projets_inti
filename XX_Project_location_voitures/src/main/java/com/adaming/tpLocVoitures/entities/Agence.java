@@ -1,5 +1,6 @@
 package com.adaming.tpLocVoitures.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,12 +35,10 @@ public class Agence {
 	@OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
 	private List<Reservation> listeReservations;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "factures_par_agence")
+	@OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
 	private List<Facture> listeFactures;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "voitures_par_agence")
+	@OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
 	private List<Voiture> listeVoitures;
 	
 	
@@ -222,5 +221,14 @@ public class Agence {
 	 */
 	public void setListeVoitures(List<Voiture> listeVoitures) {
 		this.listeVoitures = listeVoitures;
+	}
+	
+	/**
+	 * 
+	 * @param client
+	 */
+	public void ajouterClient(Client client) {
+		if (this.listeClients == null) this.setListeClients(new ArrayList<Client>());
+		this.listeClients.add(client);
 	}
 }

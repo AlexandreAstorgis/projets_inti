@@ -43,7 +43,7 @@ public class ReservationServiceImplTestU {
 	 */
 	@Test
 	public void testAdd() {
-		Reservation r = new Reservation(UtilitaireDate.getDate(2016, 9, 10), UtilitaireDate.getDate(), 250d);
+		Reservation r = new Reservation(UtilitaireDate.getDate(2016, 9, 10), UtilitaireDate.getDate());
 		service.add(r);
 		assertNotNull(r.getIdReservation());
 	}

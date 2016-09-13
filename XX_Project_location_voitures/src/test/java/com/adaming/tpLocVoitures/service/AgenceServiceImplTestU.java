@@ -6,11 +6,14 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.adaming.tpLocVoitures.entities.Agence;
+import com.adaming.tpLocVoitures.entities.Client;
+import com.adaming.tpLocVoitures.entities.Facture;
+import com.adaming.tpLocVoitures.entities.Reservation;
+import com.adaming.tpLocVoitures.entities.Voiture;
 
 /**
  * @author inti0314
@@ -42,36 +45,52 @@ public class AgenceServiceImplTestU {
 	 * Test method for {@link com.adaming.tpLocVoitures.service.impl.AgenceServiceImpl#getAllReservations(java.lang.Integer)}.
 	 */
 	@Test
-	@Ignore
 	public void testGetAllReservations() {
-		fail("Not yet implemented");
+		Long idAgence1 = 1L;
+		Long idAgence2 = 3L;
+		List<Reservation> liste1 = service.getAllReservations(idAgence1);
+		List<Reservation> liste2 = service.getAllReservations(idAgence2);
+		
+		assertTrue(liste1.size() < 5 && liste2.size() > 0);
 	}
 
 	/**
 	 * Test method for {@link com.adaming.tpLocVoitures.service.impl.AgenceServiceImpl#getAllVoitures(java.lang.Integer)}.
 	 */
 	@Test
-	@Ignore
-	public void testGetAllVoitures() {
-		fail("Not yet implemented");
+	public void testGetAlletAllVoitures() {
+		Long idAgence1 = 1L;
+		Long idAgence2 = 3L;
+		List<Voiture> liste1 = service.getAllVoitures(idAgence1);
+		List<Voiture> liste2 = service.getAllVoitures(idAgence2);
+		
+		assertTrue(liste1.size() > 5 && liste2.size() < 4);
 	}
 
 	/**
 	 * Test method for {@link com.adaming.tpLocVoitures.service.impl.AgenceServiceImpl#getAllFactures(java.lang.Integer)}.
 	 */
 	@Test
-	@Ignore
 	public void testGetAllFactures() {
-		fail("Not yet implemented");
+		Long idAgence1 = 1L;
+		Long idAgence2 = 3L;
+		List<Facture> liste1 = service.getAllFactures(idAgence1);
+		List<Facture> liste2 = service.getAllFactures(idAgence2);
+		
+		assertTrue(liste1.size() < 5 && liste2.size() > 0);
 	}
 
 	/**
 	 * Test method for {@link com.adaming.tpLocVoitures.service.impl.AgenceServiceImpl#getAllClients(java.lang.Integer)}.
 	 */
 	@Test
-	@Ignore
 	public void testGetAllClients() {
-		fail("Not yet implemented");
+		Long idAgence1 = 1L;
+		Long idAgence2 = 3L;
+		List<Client> liste1 = service.getAllClients(idAgence1);
+		List<Client> liste2 = service.getAllClients(idAgence2);
+		
+		assertTrue(liste1.size() > 3 && liste2.size() < 3);
 	}
 
 	/**

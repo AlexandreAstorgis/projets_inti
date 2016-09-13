@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
 import com.adaming.tpLocVoitures.dao.IAgenceDAO;
@@ -33,16 +33,14 @@ public class AgenceDAOImpl extends GenericDAOImpl<Agence> implements IAgenceDAO 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Reservation> getAllReservations(Integer idAgence) {
-		SQLQuery query = (SQLQuery) em.createQuery("SELECT r.* "
-												 + "FROM agence a "
-												 + "INNER JOIN reservations_par_agence ra ON ra.agence_idAgence = a.idAgence "
-												 + "INNER JOIN reservation r ON ra.idReservation = r.idReservation "
-												 + "WHERE a.idAgence = ?");
-		query.setInteger(1, idAgence);
-		List<Reservation> reservations = query.list();
+	public List<Reservation> getAllReservations(Long idAgence) {
+		Agence agence = this.find(idAgence);
+		Query query = em.createQuery("FROM Reservation r WHERE r.agence = ?");
+		query.setParameter(1, agence);
+		List<Reservation> results = query.getResultList();
+
 		log.info("------    RECUP DE LA LISTE DES RESERVATIONS POUR UNE AGENCE DONNEE     ------");
-		return reservations;
+		return results;
 	}
 
 	
@@ -51,16 +49,14 @@ public class AgenceDAOImpl extends GenericDAOImpl<Agence> implements IAgenceDAO 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Voiture> getAllVoitures(Integer idAgence) {
-		SQLQuery query = (SQLQuery) em.createQuery("SELECT v.* "
-												 + "FROM agence a "
-												 + "INNER JOIN voitures_par_agence va ON va.agence_idAgence = a.idAgence "
-												 + "INNER JOIN voiture v ON va.idVoiture = v.idVoiture "
-												 + "WHERE a.idAgence = ?");
-		query.setInteger(1, idAgence);
-		List<Voiture> voitures = query.list();
+	public List<Voiture> getAllVoitures(Long idAgence) {
+		Agence agence = this.find(idAgence);
+		Query query = em.createQuery("FROM Voiture v WHERE v.agence = ?");
+		query.setParameter(1, agence);
+		List<Voiture> results = query.getResultList();
+
 		log.info("------    RECUP DE LA LISTE DES VOITURES POUR UNE AGENCE DONNEE     ------");
-		return voitures;
+		return results;
 	}
 
 	/* (non-Javadoc)
@@ -68,16 +64,14 @@ public class AgenceDAOImpl extends GenericDAOImpl<Agence> implements IAgenceDAO 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Facture> getAllFactures(Integer idAgence) {
-		SQLQuery query = (SQLQuery) em.createQuery("SELECT f.* "
-												 + "FROM agence a "
-												 + "INNER JOIN factures_par_agence fa ON fa.agence_idAgence = a.idAgence "
-												 + "INNER JOIN facture f ON fa.idFacture = f.idFacture "
-												 + "WHERE a.idAgence = ?");
-		query.setInteger(1, idAgence);
-		List<Facture> factures = query.list();
+	public List<Facture> getAllFactures(Long idAgence) {
+		Agence agence = this.find(idAgence);
+		Query query = em.createQuery("FROM Facture f WHERE f.agence = ?");
+		query.setParameter(1, agence);
+		List<Facture> results = query.getResultList();
+
 		log.info("------    RECUP DE LA LISTE DES FACTURES POUR UNE AGENCE DONNEE     ------");
-		return factures;
+		return results;
 	}
 
 	/* (non-Javadoc)
@@ -85,15 +79,25 @@ public class AgenceDAOImpl extends GenericDAOImpl<Agence> implements IAgenceDAO 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Client> getAllClients(Integer idAgence) {
-		SQLQuery query = (SQLQuery) em.createQuery("SELECT c.* "
-												 + "FROM agence a "
-												 + "INNER JOIN clients_par_agence ca ON ca.agence_idAgence = a.idAgence "
-												 + "INNER JOIN client c ON ca.idFacture = c.idFacture "
-												 + "WHERE a.idAgence = ?");
-		query.setInteger(1, idAgence);
-		List<Client> clients = query.list();
+	public List<Client> getAllClients(Long idAgence) {
+		Agence agence = this.find(idAgence);
+		Query query = em.createQuery("SELECT c FROM Client c, Agence a WHERE a = :agence AND c MEMBER OF a.listeClients");
+		query.setParameter("agence", agence);
+		List<Client> results = query.getResultList();
+
 		log.info("------    RECUP DE LA LISTE DES CLIENTS POUR UNE AGENCE DONNEE     ------");
-		return clients;
+		return results;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.dao.IAgenceDAO#addClient(java.lang.Long, com.adaming.tpLocVoitures.entities.Client)
+	 */
+	@Override
+	public Agence addClient(Long idAgence, Client client) {
+		Agence agence = this.find(idAgence);
+		agence.ajouterClient(client);
+		this.update(agence);
+		return agence;
 	}
 }

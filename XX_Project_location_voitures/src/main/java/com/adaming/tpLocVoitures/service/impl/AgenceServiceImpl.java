@@ -44,7 +44,7 @@ public class AgenceServiceImpl implements IAgenceService {
 	 * @see com.adaming.tpLocVoitures.service.IAgenceService#getAllReservations(java.lang.Integer)
 	 */
 	@Override
-	public List<Reservation> getAllReservations(Integer idAgence) {
+	public List<Reservation> getAllReservations(Long idAgence) {
 		return dao.getAllReservations(idAgence);
 	}
 
@@ -52,7 +52,7 @@ public class AgenceServiceImpl implements IAgenceService {
 	 * @see com.adaming.tpLocVoitures.service.IAgenceService#getAllVoitures(java.lang.Integer)
 	 */
 	@Override
-	public List<Voiture> getAllVoitures(Integer idAgence) {
+	public List<Voiture> getAllVoitures(Long idAgence) {
 		return dao.getAllVoitures(idAgence);
 	}
 
@@ -60,7 +60,7 @@ public class AgenceServiceImpl implements IAgenceService {
 	 * @see com.adaming.tpLocVoitures.service.IAgenceService#getAllFactures(java.lang.Integer)
 	 */
 	@Override
-	public List<Facture> getAllFactures(Integer idAgence) {
+	public List<Facture> getAllFactures(Long idAgence) {
 		return dao.getAllFactures(idAgence);
 	}
 
@@ -68,7 +68,7 @@ public class AgenceServiceImpl implements IAgenceService {
 	 * @see com.adaming.tpLocVoitures.service.IAgenceService#getAllClients(java.lang.Integer)
 	 */
 	@Override
-	public List<Client> getAllClients(Integer idAgence) {
+	public List<Client> getAllClients(Long idAgence) {
 		return dao.getAllClients(idAgence);
 	}
 	
@@ -102,5 +102,13 @@ public class AgenceServiceImpl implements IAgenceService {
 	@Override
 	public List<Agence> getAll() {
 		return dao.getAll();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.adaming.tpLocVoitures.service.IAgenceService#addClient(java.lang.Long, com.adaming.tpLocVoitures.entities.Client)
+	 */
+	@Override
+	public Agence addClient(Long idAgence, Client client) {
+		return dao.addClient(idAgence, client);
 	}
 }

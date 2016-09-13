@@ -14,8 +14,9 @@ import com.adaming.tpLocVoitures.entities.Voiture;
  */
 public interface IAgenceDAO extends IGenericDAO<Agence> {
 
-	List<Reservation> getAllReservations(Integer idAgence);
-	List<Voiture> getAllVoitures(Integer idAgence);
-	List<Facture> getAllFactures(Integer idAgence);
-	List<Client> getAllClients(Integer idAgence);
+	List<Reservation> getAllReservations(Long idAgence);
+	List<Voiture> getAllVoitures(Long idAgence);
+	List<Facture> getAllFactures(Long idAgence);
+	List<Client> getAllClients(Long idAgence);
+	Agence addClient(Long idAgence, Client client);
 }

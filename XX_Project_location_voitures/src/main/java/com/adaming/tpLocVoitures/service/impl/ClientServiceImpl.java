@@ -42,7 +42,7 @@ public class ClientServiceImpl implements IClientService {
 	 * @see com.adaming.tpLocVoitures.service.IClientService#getAllReservations(java.lang.Integer)
 	 */
 	@Override
-	public List<Reservation> getAllReservations(Integer idClient) {
+	public List<Reservation> getAllReservations(Long idClient) {
 		return dao.getAllReservations(idClient);
 	}
 

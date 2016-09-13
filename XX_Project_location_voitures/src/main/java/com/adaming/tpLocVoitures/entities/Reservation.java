@@ -10,6 +10,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.adaming.tpLocVoitures.tools.UtilitaireDate;
+
 /**
  * @author inti0314
  *
@@ -60,11 +62,11 @@ public class Reservation {
 	 * @param dateFin
 	 * @param prixTotal
 	 */
-	public Reservation(Calendar dateDebut, Calendar dateFin, Double prixTotal) {
+	public Reservation(Calendar dateDebut, Calendar dateFin) {
 		super();
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.prixTotal = prixTotal;
+		this.prixTotal = null;
 	}
 
 	/**
@@ -176,6 +178,7 @@ public class Reservation {
 	 */
 	public void setVoiture(Voiture voiture) {
 		this.voiture = voiture;
+		this.calculerPrixTotal();
 	}
 
 	/**
@@ -204,5 +207,26 @@ public class Reservation {
 	 */
 	public void setAgence(Agence agence) {
 		this.agence = agence;
+	}
+	
+	
+	/**
+	 * 
+	 */
+	private void calculerPrixTotal() {
+		Integer nbreJours = UtilitaireDate.getNombreJours(UtilitaireDate.substract(dateFin, dateDebut));
+		Double prix = this.voiture == null ? null : this.voiture.getPrix();
+		this.setPrixTotal(prix == null ? null : prix * nbreJours);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Reservation [idReservation=" + idReservation + ", dateDebut="
+				+ dateDebut + ", dateFin=" + dateFin + ", prixTotal="
+				+ prixTotal + ", client=" + client + ", voiture=" + voiture
+				+ ", facture=" + facture + ", agence=" + agence + "]";
 	}
 }

@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -30,7 +32,9 @@ public class Voiture {
 	@OneToMany(mappedBy = "voiture", fetch = FetchType.LAZY)
 	private List<Reservation> reservation;
 	
-	
+	@ManyToOne
+	@JoinTable(name = "voitures_par_agence")
+	private Agence agence;
 	
 	
 	
@@ -204,5 +208,19 @@ public class Voiture {
 	 */
 	public void setReservation(List<Reservation> reservation) {
 		this.reservation = reservation;
+	}
+
+	/**
+	 * @return the agence
+	 */
+	public Agence getAgence() {
+		return agence;
+	}
+
+	/**
+	 * @param agence the agence to set
+	 */
+	public void setAgence(Agence agence) {
+		this.agence = agence;
 	}
 }

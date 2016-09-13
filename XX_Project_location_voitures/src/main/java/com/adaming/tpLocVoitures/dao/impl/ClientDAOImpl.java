@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
 import com.adaming.tpLocVoitures.dao.IClientDAO;
@@ -30,14 +30,12 @@ public class ClientDAOImpl extends GenericDAOImpl<Client> implements IClientDAO 
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Reservation> getAllReservations(Integer idClient) {
-		SQLQuery query = (SQLQuery) em.createQuery("SELECT r.* "
-												 + "FROM client c "
-												 + "INNER JOIN reservations_par_client rc ON rc.client_idClient = c.idClient "
-												 + "INNER JOIN reservation r ON rc.idReservation = r.idReservation "
-												 + "WHERE c.idClient = ?");
-		query.setInteger(1, idClient);
-		List<Reservation> reservations = query.list();
+	public List<Reservation> getAllReservations(Long idClient) {
+		Client client = this.find(idClient);
+		Query query = em.createQuery("FROM Reservation r WHERE r.client = ?");
+		query.setParameter(1, client);
+		List<Reservation> reservations = query.getResultList();
+		
 		log.info("------    RECUP DE LA LISTE DES RESERVATIONS POUR UN CLIENT DONNE     ------");
 		return reservations;
 	}

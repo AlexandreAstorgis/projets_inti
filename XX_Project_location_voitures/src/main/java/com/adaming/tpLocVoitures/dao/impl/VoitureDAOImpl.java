@@ -5,8 +5,8 @@ import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-import org.hibernate.SQLQuery;
 import org.springframework.stereotype.Repository;
 
 import com.adaming.tpLocVoitures.dao.IVoitureDAO;
@@ -31,15 +31,13 @@ public class VoitureDAOImpl extends GenericDAOImpl<Voiture> implements
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Reservation> getAllReservations(Integer idVoiture) {
-		SQLQuery query = (SQLQuery) em.createQuery("SELECT r.* "
-												 + "FROM voiture v "
-												 + "INNER JOIN reservations_par_voiture rv ON rv.voiture_idVoiture = v.idVoiture "
-												 + "INNER JOIN reservation r ON rv.idReservation = r.idReservation "
-												 + "WHERE v.idVoiture = ?");
-		query.setInteger(1, idVoiture);
-		List<Reservation> reservations = query.list();
+	public List<Reservation> getAllReservations(Long idVoiture) {
+		Voiture voiture = this.find(idVoiture);
+		Query query = em.createQuery("FROM Reservation r WHERE r.voiture = ?");
+		query.setParameter(1, voiture);
+		List<Reservation> results = query.getResultList();
+
 		log.info("------    RECUP DE LA LISTE DES RESERVATIONS POUR UNE VOITURE DONNEE     ------");
-		return reservations;
+		return results;
 	}
 }
